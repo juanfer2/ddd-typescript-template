@@ -1,0 +1,10 @@
+node_modules/
+dist/
+build/
+.tmp
+logs/
+data
+test-results.xml
+/src/Contexts/Mooc/Courses/infrastructure/persistence/courses.*.repo
+
+.env
