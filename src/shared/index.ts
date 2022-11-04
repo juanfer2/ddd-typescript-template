@@ -1,6 +1,6 @@
-import { Server } from "./server";
+import { ServerBackend } from "./infrastructure/server";
 
 const port = process.env.PORT || '4001';
-const server = new Server(port);
+const server = new ServerBackend(port);
 
 server.start();

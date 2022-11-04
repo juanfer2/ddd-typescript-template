@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// BTree 
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String? 
+  lastName  String? 
+  email     String   @unique
+  username  String   @unique
+  password  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+  @@index([name])
+  @@map("users")
+}
+
+// model Document {
+//   id          Int      @id @default(autoincrement())
+//   name        String
+//   url  String
+//   typeDocument String
+// 
+//   fileDocumentStrategy FileDocumentStrategy[]
+// 
+//   createdAt   DateTime @default(now())
+//   updatedAt   DateTime @default(now()) @updatedAt
+// 
+//   @@map("documents")
+// }
+// 
+// 
+// model FileDocumentStrategy {
+//   id          Int      @id @default(autoincrement())
+//   
+//   documentId Int
+//   document    Document? @relation(fields: [documentId], references: [id])
+// 
+//   documentStrategyId Int
+//   documentStrategy    DocumentStrategy @relation(fields: [documentStrategyId], references: [id])
+// 
+//   createdAt   DateTime @default(now())
+//   updatedAt   DateTime @default(now()) @updatedAt
+// 
+//   @@map("file_document_stategies")
+// }

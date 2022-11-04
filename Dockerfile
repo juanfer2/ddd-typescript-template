@@ -4,12 +4,19 @@ WORKDIR /app
 
 ENV PATH /app/node_modules/.bin:$PATH
 
-COPY package*.json ./
+# COPY package*.json ./
+COPY package.json package.json
+COPY package-lock.json package-lock.json
+
+RUN npm install
 
 COPY . .
 
-# EXPOSE 4001
+RUN npm run prisma-generate
 
-RUN npm install
+EXPOSE 4001
+
+# ENV NODE_ENV="DEV"
+# ENV DATABASE_URL="postgresql://postgres:postgres@localhost:5432/ddd-template?schema=public"
 
 CMD ["npm", "run", "dev"]
